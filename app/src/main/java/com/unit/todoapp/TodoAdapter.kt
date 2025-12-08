@@ -1,8 +1,10 @@
 package com.unit.todoapp
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+
 
 class TodoAdapter (
     var todos: List<TodoItem>
@@ -13,17 +15,18 @@ class TodoAdapter (
         parent: ViewGroup,
         viewType: Int
     ): TodoViewHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.todo_item, parent, false)
+        return TodoViewHolder(view)
     }
 
     override fun onBindViewHolder(
         holder: TodoViewHolder,
         position: Int
     ) {
-        TODO("Not yet implemented")
+        holder.itemView
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return todos.size
     }
 }
