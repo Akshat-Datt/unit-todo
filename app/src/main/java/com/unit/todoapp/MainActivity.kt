@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         rvTodo.layoutManager = LinearLayoutManager(this)
 
         btnAddItem.setOnClickListener {
-            val title = findViewById<EditText>(R.id.etItemText).toString()
+            val title = findViewById<EditText>(R.id.etItemText).text.toString()
             val todo = TodoItem(title, false)
             todoList.add(todo)
             adapter.notifyItemInserted(todoList.size -1)
