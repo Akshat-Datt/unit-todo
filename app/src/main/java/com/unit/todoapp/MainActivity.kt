@@ -43,4 +43,8 @@ class MainActivity : ComponentActivity() {
             adapter.notifyItemInserted(todoList.size -1)
         }
     }
+
+    fun RemoveTodoItem(){
+
+    }
 }
