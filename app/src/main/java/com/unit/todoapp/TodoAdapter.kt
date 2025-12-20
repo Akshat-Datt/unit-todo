@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class TodoAdapter (
-    var todos: List<TodoItem>
+    var todos: MutableList<TodoItem>
 ): RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
     inner class TodoViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 
@@ -36,5 +36,10 @@ class TodoAdapter (
 
     override fun getItemCount(): Int {
         return todos.size
+    }
+
+    fun deleteItem(position: Int) {
+        todos.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

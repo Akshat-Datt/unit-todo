@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unit.todoapp.ui.theme.TodoAppTheme
@@ -42,9 +43,27 @@ class MainActivity : ComponentActivity() {
             todoList.add(todo)
             adapter.notifyItemInserted(todoList.size -1)
         }
-    }
 
-    fun RemoveTodoItem(){
+        val swipeCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+
+                adapter.deleteItem(position)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeCallback)
+        itemTouchHelper.attachToRecyclerView(rvTodo)
     }
 }
